@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://6kg4c3ud6ue3"]
+
+[ext_resource type="Script" uid="uid://dpnmmxqx1d5se" path="res://scripts/fighter.gd" id="1_lkiow"]
+[ext_resource type="Script" uid="uid://cjm2uu1dhyyh6" path="res://scripts/fighter_tuning.gd" id="2_81dvp"]
+[ext_resource type="Script" uid="uid://bawv7o5npwtgt" path="res://scripts/attack_data.gd" id="3_fisqk"]
+
+[sub_resource type="Resource" id="Resource_ftobn"]
+script = ExtResource("2_81dvp")
+metadata/_custom_type_script = "uid://cjm2uu1dhyyh6"
+
+[sub_resource type="Resource" id="Resource_81dvp"]
+script = ExtResource("3_fisqk")
+stun_type = 1
+stun_duration_frames = 30
+metadata/_custom_type_script = "uid://bawv7o5npwtgt"
+
+[sub_resource type="Resource" id="Resource_fisqk"]
+script = ExtResource("3_fisqk")
+startup_frames = 12
+recovery_frames = 20
+stun_type = 2
+stun_duration_frames = 60
+metadata/_custom_type_script = "uid://bawv7o5npwtgt"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj476"]
+size = Vector2(60, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mt1p6"]
+size = Vector2(70, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnryx"]
+size = Vector2(60, 160)
+
+[node name="Fighter" type="CharacterBody2D" unique_id=1224048219]
+script = ExtResource("1_lkiow")
+tuning = SubResource("Resource_ftobn")
+moves = {
+"heavy": SubResource("Resource_fisqk"),
+"light": SubResource("Resource_81dvp")
+}
+player_prefix = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=56553240]
+shape = SubResource("RectangleShape2D_sj476")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=141910526]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -80.0
+offset_right = 30.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=199909352]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1804890376]
+shape = SubResource("RectangleShape2D_mt1p6")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1514864989]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=155114017]
+shape = SubResource("RectangleShape2D_fnryx")

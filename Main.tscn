@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cmxo7j6dkxbgw"]
+
+[ext_resource type="PackedScene" uid="uid://6kg4c3ud6ue3" path="res://Fighter.tscn" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://bqbjlj0uf84nn" path="res://main.gd" id="1_uu6xs"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sj476"]
+
+[node name="Main" type="Node2D" unique_id=1699398479]
+script = ExtResource("1_uu6xs")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=259509492]
+offset_left = -1000.0
+offset_top = -200.0
+offset_right = 1000.0
+offset_bottom = 200.0
+color = Color(0.38928655, 0.38928664, 0.38928658, 1)
+
+[node name="Fighter1" parent="." unique_id=1224048219 instance=ExtResource("1_glv2v")]
+position = Vector2(-200, 0)
+
+[node name="Fighter2" parent="." unique_id=781146362 instance=ExtResource("1_glv2v")]
+position = Vector2(200, 0)
+player_prefix = &"p2"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1717787296]
+offset = Vector2(0, -150)
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=62245129]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=2024806266]
+shape = SubResource("WorldBoundaryShape2D_sj476")
